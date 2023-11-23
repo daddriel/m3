@@ -22,14 +22,15 @@ public class User {
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private UserDetail userDetail;
+
+    public User() {
+    }
+
     public User(String username, String password, String email, LocalDateTime createAt) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.createdAt = createAt;
-    }
-
-    public User() {
     }
 
     public Long getId() {

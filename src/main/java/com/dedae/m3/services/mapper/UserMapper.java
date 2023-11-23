@@ -1,11 +1,14 @@
 package com.dedae.m3.services.mapper;
 
 import com.dedae.m3.domain.entities.User;
+import com.dedae.m3.domain.entities.UserDetail;
 import com.dedae.m3.dto.UserDTO;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserMapper implements CustomMapper<UserDTO, User>{
+
+    UserDetailMapper userDetailMapper = new UserDetailMapper();
     @Override
     public UserDTO toDto(User user) {
         UserDTO dto = new UserDTO();
@@ -25,7 +28,8 @@ public class UserMapper implements CustomMapper<UserDTO, User>{
         dto.setEmail(user.getEmail());
         dto.setCreateAt(user.getCreatedAt());
         if (user.getUserDetail() != null){
-            dto.setUserDetail(user.getUserDetail().toString());
+            UserDetail userDetail = user.getUserDetail();
+            dto.setUserDetail(userDetailMapper.toDto(userDetail));
         }
 
         return dto;

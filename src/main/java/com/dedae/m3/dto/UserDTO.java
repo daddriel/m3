@@ -19,6 +19,6 @@ public class UserDTO {
     private String email;
     private LocalDateTime createAt;
 
-    private String userDetail;
+    private UserDetailDTO userDetail;
 
 }

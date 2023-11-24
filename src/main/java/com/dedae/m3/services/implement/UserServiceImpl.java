@@ -1,7 +1,9 @@
 package com.dedae.m3.services.implement;
 
 import com.dedae.m3.domain.entities.User;
+import com.dedae.m3.domain.entities.UserDetail;
 import com.dedae.m3.dto.UserDTO;
+import com.dedae.m3.repositories.spring.data.UserDetailRepository;
 import com.dedae.m3.repositories.spring.data.UserRepository;
 import com.dedae.m3.services.UserService;
 import com.dedae.m3.services.mapper.UserMapper;
@@ -18,9 +20,13 @@ public class UserServiceImpl implements UserService {
 
     private final UserMapper userMapper;
 
-    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper) {
+    private final UserDetailRepository userDetailRepository;
+
+
+    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper, UserDetailRepository userDetail) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
+        this.userDetailRepository = userDetail;
     }
 
     @Override
@@ -41,7 +47,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO save(UserDTO dto) {
         User user = userRepository.save(userMapper.toEntity(dto));
-
+        userDetailRepository.save(new UserDetail(
+                dto.getUserDetail().getFirstName(),
+                dto.getUserDetail().getLastName(),
+                dto.getUserDetail().getAge(),
+                dto.getUserDetail().getBirthDay(),
+                user));
         return userMapper.toDto(user);
     }
 

@@ -19,5 +19,4 @@ public class UserDetailDTO {
 
     private Date birthDay;
 
-    private Long userId;
 }

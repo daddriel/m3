@@ -1,5 +1,6 @@
 package com.dedae.m3.domain.entities;
 
+import com.dedae.m3.dto.UserDetailDTO;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -18,8 +19,6 @@ public class UserDetail {
 
     private Integer age;
     private Date birthDay;
-
-
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;

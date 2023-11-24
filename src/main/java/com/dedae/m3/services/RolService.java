@@ -10,6 +10,6 @@ public interface RolService {
 
     Optional<RolDTO> getRolById(Integer id);
 
-    int save(RolDTO rolDTO);
-    int delete(Integer id);
+    RolDTO save(RolDTO rolDTO);
+    void delete(Integer id);
 }

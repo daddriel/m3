@@ -3,6 +3,7 @@ package com.dedae.m3.domain.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -22,6 +23,9 @@ public class User {
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private UserDetail userDetail;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<UserRol> userRol;
 
     public User() {
     }
@@ -79,5 +83,13 @@ public class User {
 
     public void setUserDetail(UserDetail userDetail) {
         this.userDetail = userDetail;
+    }
+
+    public Set<UserRol> getUserRol() {
+        return userRol;
+    }
+
+    public void setUserRol(Set<UserRol> userRol) {
+        this.userRol = userRol;
     }
 }

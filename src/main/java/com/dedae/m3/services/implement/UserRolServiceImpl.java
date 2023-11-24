@@ -1,5 +1,6 @@
 package com.dedae.m3.services.implement;
 
+import com.dedae.m3.domain.entities.UserRol;
 import com.dedae.m3.dto.UserRolDTO;
 import com.dedae.m3.repositories.spring.data.UserRolRepository;
 import com.dedae.m3.services.UserRolService;
@@ -32,7 +33,8 @@ public class UserRolServiceImpl implements UserRolService {
 
     @Override
     public UserRolDTO save(UserRolDTO dto) {
-        return null;
+        UserRol userRol = userRolRepository.save(userRolMapper.toEntity(dto));
+        return userRolMapper.toDto(userRol);
     }
 
     @Override

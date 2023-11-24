@@ -12,6 +12,7 @@ public class UserDetailMapper implements CustomMapper <UserDetailDTO, UserDetail
         dto.setId(userDetail.getId());
         dto.setFirstName(userDetail.getFirstName());
         dto.setLastName(userDetail.getLastName());
+        dto.setAge(userDetail.getAge());
         dto.setBirthDay(userDetail.getBirthDay());
 
         return dto;
@@ -23,6 +24,7 @@ public class UserDetailMapper implements CustomMapper <UserDetailDTO, UserDetail
         userDetail.setId(dto.getId());
         userDetail.setFirstName(dto.getFirstName());
         userDetail.setLastName(dto.getLastName());
+        userDetail.setAge(dto.getAge());
         userDetail.setBirthDay(dto.getBirthDay());
 
         return userDetail;

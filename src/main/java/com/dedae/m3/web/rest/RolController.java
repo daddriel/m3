@@ -5,11 +5,12 @@ import com.dedae.m3.services.RolService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/role")
+@RequestMapping("/v1/roles")
 public class RolController {
     private final RolService rolService;
 
@@ -32,15 +33,13 @@ public class RolController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> create(@RequestBody final RolDTO dto) throws  URISyntaxException{
+    public ResponseEntity<RolDTO> create(@RequestBody final RolDTO dto) throws  URISyntaxException{
         if (dto.getId() != null){
             throw new IllegalArgumentException("No hya id");
         }
-        rolService.save(dto);
 
-        return ResponseEntity
-                .created( null)
-                .build();
+        RolDTO rolDB = rolService.save(dto);
+        return ResponseEntity.created(new URI("/v1/roles/" + rolDB.getId())).body(rolDB);
     }
 
     @DeleteMapping("/{id}")

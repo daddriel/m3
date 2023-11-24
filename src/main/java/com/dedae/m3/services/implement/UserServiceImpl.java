@@ -34,7 +34,8 @@ public class UserServiceImpl implements UserService {
     public List<UserDTO> listUserDetailed() {
         return userRepository.findAll()
                 .stream()
-                .map(userMapper::toDtoDetailed).collect(Collectors.toList());
+                .map(userMapper::toDtoDetailed)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -54,4 +55,5 @@ public class UserServiceImpl implements UserService {
     public void delete(Integer id) {
         userRepository.deleteById(id);
     }
+
 }

@@ -17,20 +17,24 @@ public class UserRol {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    @Column(name = "user_id")
-    private Long userId;
 
-    @Column(name = "rol_id")
-    private Integer rolId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    public UserRol(Boolean active, LocalDateTime createdAt, Long userId, Integer rolId) {
-        this.active = active;
-        this.createdAt = createdAt;
-        this.userId = userId;
-        this.rolId = rolId;
-    }
+    @ManyToOne
+    @JoinColumn(name = "rol_id")
+    private Rol rol;
 
     public UserRol() {
+    }
+
+    public UserRol(Integer id, Boolean active, LocalDateTime createdAt, User user, Rol rol) {
+        this.id = id;
+        this.active = active;
+        this.createdAt = createdAt;
+        this.user = user;
+        this.rol = rol;
     }
 
     public Integer getId() {
@@ -57,19 +61,19 @@ public class UserRol {
         this.createdAt = createdAt;
     }
 
-    public Long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Integer getRolId() {
-        return rolId;
+    public Rol getRol() {
+        return rol;
     }
 
-    public void setRolId(Integer rolId) {
-        this.rolId = rolId;
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
 }
